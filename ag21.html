@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocoding service</title>
+
+ <script type="text/javascript"
+ src="https://maps.googleapis.com/maps/api/js?
+key=AIzaSyB_ZSdzmuDdhVLlTNypKYS7tuG_xns6IVU&sensor=false">
+ </script>
+
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    <div id="bmap"></div>
+    <script>
+
+  var ad = document.getElementById("bmap");
+  var ag = new google.maps.Geocoder();
+
+  document.getElementById('submit').addEventListener('click', function() {
+    geocodeAddress(ag, ar);
+    ad.innerHTML=ar;
+  });
+
+
+function geocodeAddress(ageocoder, aresult) {
+  var aad = document.getElementById('address').value;
+   ageocoder.geocode({'address': aad}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      aresult=results[0].geometry.location;
+      
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+    </script>
+<!--meir
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc4GDbpdULQixDDEWfMUwIKRa1TfLFAkw&libraries=places&sensor=false">
+</script>
+-->
+<!--api
+    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&signed_in=true&callback=initMap"
+        async defer></script>
+
+-->
+<!--plugin
+<script type="text/javascript" 
+ 
+src="http://maps.google.com/maps/api/js?sensor=false&libraries=places">
+
+</script>
+
+<script type="text/javascript"
+ src="https://maps.googleapis.com/maps/api/js?
+key=AIzaSyB_ZSdzmuDdhVLlTNypKYS7tuG_xns6IVU&sensor=false">
+ </script>
+-->
+<p>localhost/0817b/coupons/workspace/ag21.html</p>
+  </body>
+</html>
